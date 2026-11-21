@@ -88,4 +88,4 @@ Allow: /
 Crawl-delay: 1
 
 # Sitemap location (uncomment and update with your actual sitemap)
-Sitemap: https://healthsavingsandspending-metlifes.com/sitemap.xml
+Sitemap: https://healthsavingandspending-metlife.com/sitemap.xml
